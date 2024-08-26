@@ -5,10 +5,15 @@ using UnityEngine;
 public class FireBullet : MonoBehaviour
 {
     [SerializeField] ObjectPool bulletPool;
-    [SerializeField] float bulletSpeed;
+    float bulletSpeed;
+    [SerializeField] float minBulletSpped;
+    [SerializeField] float maxBulletSpeed;
     [SerializeField] Transform Point;
     [SerializeField] BulletType nowType;
-
+    private void Awake()
+    {
+        bulletSpeed = minBulletSpped;
+    }
     private void Update()
     {
         SelectBullet();
@@ -17,11 +22,18 @@ public class FireBullet : MonoBehaviour
     
     void Fire()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButton("Jump"))
+        {
+            bulletSpeed += 5 * Time.deltaTime;
+            if (bulletSpeed > maxBulletSpeed)
+                bulletSpeed = maxBulletSpeed;
+        }
+        if (Input.GetButtonUp("Jump"))
         {
             PooledObject instance = bulletPool.GetPool(nowType, Point.position, Point.rotation);      
             Bullet bullet = instance.GetComponent<Bullet>();
             bullet.SetSpeed(bulletSpeed);
+            bulletSpeed = minBulletSpped;
         }
     }
     void SelectBullet()
