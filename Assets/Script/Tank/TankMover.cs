@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TankMover : MonoBehaviour
@@ -17,17 +15,20 @@ public class TankMover : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
 
-        Vector3 moveDir = new Vector3 (x, 0, z);
+        Vector3 moveDir = new Vector3(x, 0, z);
+      
         if (x != 0)
         {
             transform.Translate(Vector3.right * x * moveSpeed * Time.deltaTime, Space.World);
         }
-        if( z!= 0)
+        if (z != 0)
         {
             transform.Translate(Vector3.forward * z * moveSpeed * Time.deltaTime, Space.World);
         }
-
-        Quaternion rotateDir = Quaternion.LookRotation(moveDir);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotateDir, rotateSpeed*Time.deltaTime);
+        if (x != 0 || z != 0)
+        {
+            Quaternion rotateDir = Quaternion.LookRotation(moveDir);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotateDir, rotateSpeed * Time.deltaTime);
+        }
     }
 }
