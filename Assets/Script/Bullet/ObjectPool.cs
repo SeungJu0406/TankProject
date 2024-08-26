@@ -12,9 +12,10 @@ public class ObjectPool : MonoBehaviour
     Stack<PooledObject> redBullets;
     Stack<PooledObject> yellowBullets;
     Stack<PooledObject> blackBullets;
-    BulletType bulletType;
 
     [SerializeField] int size;
+
+    BulletType bulletType;
     
     
 
@@ -60,9 +61,10 @@ public class ObjectPool : MonoBehaviour
         bulletType = BulletType.Red;
     }
 
-    public PooledObject GetPool(Vector3 pos, Quaternion rot)
+    public PooledObject GetPool(BulletType type,Vector3 pos, Quaternion rot)
     {
         PooledObject bullet = null;
+        bulletType = type;
         switch (bulletType)
         {
             case BulletType.Red:
@@ -78,14 +80,13 @@ public class ObjectPool : MonoBehaviour
                 {
                     bullet = Instantiate(redBullet, pos, rot);
                     bullet.bulletType = BulletType.Red;
-                    bullet.parentPool = this;
-                    
+                    bullet.parentPool = this;               
                 }
                 break;
             case BulletType.Yellow:
                 if (yellowBullets.Count > 0)
                 {
-                    bullet = redBullets.Pop();
+                    bullet = yellowBullets.Pop();
                     bullet.transform.position = pos;
                     bullet.transform.rotation = rot;
                     bullet.transform.parent = null;
@@ -101,7 +102,7 @@ public class ObjectPool : MonoBehaviour
             case BulletType.Black:
                 if (blackBullets.Count > 0)
                 {
-                    bullet = redBullets.Pop();
+                    bullet = blackBullets.Pop();
                     bullet.transform.position = pos;
                     bullet.transform.rotation = rot;
                     bullet.transform.parent = null;
