@@ -12,7 +12,7 @@ public class ObjectPool : MonoBehaviour
     Stack<PooledObject> redBullets;
     Stack<PooledObject> yellowBullets;
     Stack<PooledObject> blackBullets;
-
+    [SerializeField] bool isInfinityBullet;
     [SerializeField] int size;
 
     BulletType bulletType;
@@ -76,7 +76,7 @@ public class ObjectPool : MonoBehaviour
                     bullet.transform.parent = null;
                     bullet.gameObject.SetActive(true);
                 }
-                else
+                else if(isInfinityBullet)
                 {
                     bullet = Instantiate(redBullet, pos, rot);
                     bullet.bulletType = BulletType.Red;
@@ -92,7 +92,7 @@ public class ObjectPool : MonoBehaviour
                     bullet.transform.parent = null;
                     bullet.gameObject.SetActive(true);
                 }
-                else
+                else if(isInfinityBullet)
                 {
                     bullet = Instantiate(yellowBullet, pos, rot);
                     bullet.bulletType = BulletType.Yellow;
@@ -108,7 +108,7 @@ public class ObjectPool : MonoBehaviour
                     bullet.transform.parent = null;
                     bullet.gameObject.SetActive(true);
                 }
-                else
+                else if(isInfinityBullet)
                 {
                     bullet = Instantiate(blackBullet, pos, rot);
                     bullet.bulletType = BulletType.Black;

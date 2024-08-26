@@ -491,6 +491,7 @@ MonoBehaviour:
   redPool: {fileID: 1751465979}
   yellowPool: {fileID: 1843107790}
   blackPool: {fileID: 199549299}
+  isInfinityBullet: 0
   size: 5
 --- !u!4 &980601396
 Transform:
@@ -600,23 +601,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7361587025870930624, guid: 5420518ca10c2ac449f81be7b8ed9da5, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9999973
       objectReference: {fileID: 0}
     - target: {fileID: 7361587025870930624, guid: 5420518ca10c2ac449f81be7b8ed9da5, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.0021813116
       objectReference: {fileID: 0}
     - target: {fileID: 7361587025870930624, guid: 5420518ca10c2ac449f81be7b8ed9da5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.0005895631
       objectReference: {fileID: 0}
     - target: {fileID: 7361587025870930624, guid: 5420518ca10c2ac449f81be7b8ed9da5, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.00045671835
       objectReference: {fileID: 0}
     - target: {fileID: 7361587025870930624, guid: 5420518ca10c2ac449f81be7b8ed9da5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -360.918
+      value: -359.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7361587025870930624, guid: 5420518ca10c2ac449f81be7b8ed9da5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7361587025870930624, guid: 5420518ca10c2ac449f81be7b8ed9da5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0.052
       objectReference: {fileID: 0}
     - target: {fileID: 7361587026275347509, guid: 5420518ca10c2ac449f81be7b8ed9da5, type: 3}
       propertyPath: m_Name
