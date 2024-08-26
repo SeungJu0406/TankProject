@@ -74,6 +74,13 @@ public class ObjectPool : MonoBehaviour
                     bullet.transform.parent = null;
                     bullet.gameObject.SetActive(true);
                 }
+                else
+                {
+                    bullet = Instantiate(redBullet, pos, rot);
+                    bullet.bulletType = BulletType.Red;
+                    bullet.parentPool = this;
+                    
+                }
                 break;
             case BulletType.Yellow:
                 if (yellowBullets.Count > 0)
@@ -84,6 +91,12 @@ public class ObjectPool : MonoBehaviour
                     bullet.transform.parent = null;
                     bullet.gameObject.SetActive(true);
                 }
+                else
+                {
+                    bullet = Instantiate(yellowBullet, pos, rot);
+                    bullet.bulletType = BulletType.Yellow;
+                    bullet.parentPool = this;
+                }
                 break;
             case BulletType.Black:
                 if (blackBullets.Count > 0)
@@ -93,6 +106,13 @@ public class ObjectPool : MonoBehaviour
                     bullet.transform.rotation = rot;
                     bullet.transform.parent = null;
                     bullet.gameObject.SetActive(true);
+                }
+                else
+                {
+                    bullet = Instantiate(blackBullet, pos, rot);
+                    bullet.bulletType = BulletType.Black;
+                    bullet.parentPool = this;
+
                 }
                 break;
             default:

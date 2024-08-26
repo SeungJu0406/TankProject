@@ -18,8 +18,6 @@ public class FireBullet : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             PooledObject instance = bulletPool.GetPool(Point.position, Point.rotation);
-            if (instance != null)
-                return;
             Bullet bullet = instance.GetComponent<Bullet>();
             bullet.SetSpeed(bulletSpeed);
         }
