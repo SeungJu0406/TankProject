@@ -670,8 +670,6 @@ GameObject:
   - component: {fileID: 5021080099268061118}
   - component: {fileID: 4541248980850445263}
   - component: {fileID: 4537115565098759681}
-  - component: {fileID: 2056911488857758851}
-  - component: {fileID: 2493424592970124264}
   - component: {fileID: 312460492817307712}
   m_Layer: 7
   m_Name: YellowBullet
@@ -779,35 +777,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2056911488857758851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2895509603148313479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cb151bd7fc433742b2ac36c3c5a6eca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigidbody: {fileID: 4537115565098759681}
-  speed: {x: 0, y: 0, z: 0}
---- !u!114 &2493424592970124264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2895509603148313479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1903a496afb18cb4d846e1a4e902bf28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentPool: {fileID: 0}
-  bulletType: 0
-  returnTime: 2
 --- !u!114 &312460492817307712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -820,9 +789,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8504b6467ba78b34a911e913b0c3da18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 4537115565098759681}
+  parentPool: {fileID: 0}
+  bullet: {fileID: 312460492817307712}
+  bulletType: 0
+  returnTime: 2
   speed: {x: 0, y: 0, z: 0}
-  pooledObject: {fileID: 2493424592970124264}
+  rigidbody: {fileID: 4537115565098759681}
+  damage: 1
+  pooledObject: {fileID: 0}
   maxTime: 5
 --- !u!1 &3090970822634767891
 GameObject:

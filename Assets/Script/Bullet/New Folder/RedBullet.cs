@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class RedBullet : Bullet
 {
-
+    private void Awake()
+    {
+        damage = 2;
+    }
 }

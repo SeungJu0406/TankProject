@@ -3,15 +3,15 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    [SerializeField] PooledObject redBullet;
-    [SerializeField] PooledObject yellowBullet;
-    [SerializeField] PooledObject blackBullet;
+    [SerializeField] Bullet redBullet;
+    [SerializeField] Bullet yellowBullet;
+    [SerializeField] Bullet blackBullet;
     [SerializeField] Transform redPool;
     [SerializeField] Transform yellowPool;
     [SerializeField] Transform blackPool;
-    Stack<PooledObject> redBullets;
-    Stack<PooledObject> yellowBullets;
-    Stack<PooledObject> blackBullets;
+    Stack<Bullet> redBullets;
+    Stack<Bullet> yellowBullets;
+    Stack<Bullet> blackBullets;
     [SerializeField] bool isInfinityBullet;
     [SerializeField] int size;
 
@@ -26,13 +26,13 @@ public class ObjectPool : MonoBehaviour
 
     void Init()
     {
-        redBullets = new Stack<PooledObject>(size);
-        yellowBullets = new Stack<PooledObject>(size);
-        blackBullets = new Stack<PooledObject>(size);
+        redBullets = new Stack<Bullet>(size);
+        yellowBullets = new Stack<Bullet>(size);
+        blackBullets = new Stack<Bullet>(size);
 
         for (int i = 0; i < size; i++)
         {
-            PooledObject red = Instantiate(redBullet);
+            Bullet red = Instantiate(redBullet);
             red.gameObject.SetActive(false);
             red.bulletType = BulletType.Red;
             red.transform.parent = redPool;
@@ -41,7 +41,7 @@ public class ObjectPool : MonoBehaviour
         }
         for (int i = 0; i < size; i++)
         {
-            PooledObject yellow = Instantiate(yellowBullet);
+            Bullet yellow = Instantiate(yellowBullet);
             yellow.gameObject.SetActive(false);
             yellow.bulletType = BulletType.Yellow;
             yellow.transform.parent = yellowPool;
@@ -50,7 +50,7 @@ public class ObjectPool : MonoBehaviour
         }
         for (int i = 0; i < size; i++)
         {
-            PooledObject black = Instantiate(blackBullet);
+            Bullet black = Instantiate(blackBullet);
             black.gameObject.SetActive(false);
             black.bulletType = BulletType.Black;
             black.transform.parent = blackPool;
@@ -60,9 +60,9 @@ public class ObjectPool : MonoBehaviour
 
         bulletType = BulletType.Red;
     }
-    public PooledObject GetPool(BulletType type,Vector3 pos, Quaternion rot)
+    public Bullet GetPool(BulletType type,Vector3 pos, Quaternion rot)
     {
-        PooledObject bullet = null;
+        Bullet bullet = null;
         bulletType = type;
         switch (bulletType)
         {
@@ -121,7 +121,7 @@ public class ObjectPool : MonoBehaviour
         return bullet;
     }
 
-    public void ReturnPool(PooledObject returnBullet)
+    public void ReturnPool(Bullet returnBullet)
     {
         returnBullet.gameObject.SetActive(false);
         if(returnBullet.bulletType == BulletType.Red)

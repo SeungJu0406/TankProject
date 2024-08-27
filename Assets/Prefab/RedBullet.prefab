@@ -960,7 +960,6 @@ GameObject:
   - component: {fileID: 2176611279830085414}
   - component: {fileID: 2574445415004261847}
   - component: {fileID: 4714146277602972590}
-  - component: {fileID: 1516151556335438967}
   m_Layer: 7
   m_Name: RedBullet
   m_TagString: Untagged
@@ -1077,23 +1076,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb151bd7fc433742b2ac36c3c5a6eca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 2574445415004261847}
-  speed: {x: 0, y: 0, z: 0}
---- !u!114 &1516151556335438967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5005106620651570763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1903a496afb18cb4d846e1a4e902bf28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   parentPool: {fileID: 0}
+  bullet: {fileID: 4714146277602972590}
   bulletType: 0
   returnTime: 2
+  speed: {x: 0, y: 0, z: 0}
+  rigidbody: {fileID: 2574445415004261847}
+  damage: 2
 --- !u!1 &5414670998644666188
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7844167245799041474}
   - component: {fileID: 4075768532139035406}
   - component: {fileID: -997248424840429242}
-  - component: {fileID: 7879693195042996999}
   - component: {fileID: 4857169583956889381}
   m_Layer: 7
   m_Name: BlackBullet
@@ -121,21 +120,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7879693195042996999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 977299556903191288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1903a496afb18cb4d846e1a4e902bf28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentPool: {fileID: 0}
-  bulletType: 0
-  returnTime: 2
 --- !u!114 &4857169583956889381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,8 +132,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c66498ffef4cb46b7946d937bec1de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: -997248424840429242}
+  parentPool: {fileID: 0}
+  bullet: {fileID: 4857169583956889381}
+  bulletType: 0
+  returnTime: 2
   speed: {x: 0, y: 0, z: 0}
+  rigidbody: {fileID: -997248424840429242}
+  damage: 1
   boomPool: {fileID: 3879716812795617381}
   boomTime: 2
   boomSize: 6

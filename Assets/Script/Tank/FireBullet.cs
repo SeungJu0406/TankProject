@@ -30,7 +30,7 @@ public class FireBullet : MonoBehaviour
         }
         if (Input.GetButtonUp("Jump"))
         {
-            PooledObject instance = bulletPool.GetPool(nowType, Point.position, Point.rotation);
+            Bullet instance = bulletPool.GetPool(nowType, Point.position, Point.rotation);
             if (instance == null)
                 return;
             Bullet bullet = instance.GetComponent<Bullet>();

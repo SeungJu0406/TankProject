@@ -2,17 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : MonoBehaviour
+public class Monster : MonoBehaviour, IHit
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] int maxHp;
+    [SerializeField] int curHp;
+    void Awake()
     {
-        
+        curHp = maxHp;
+    }
+    public void Hit(int damage)
+    {
+        curHp -= damage;
+        if(curHp < 0)
+        {
+            curHp = 0;
+            Die();
+        }
+    }
+    void Die()
+    {
+        Destroy(gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

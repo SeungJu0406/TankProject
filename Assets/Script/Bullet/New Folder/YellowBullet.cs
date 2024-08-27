@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class YellowBullet : Bullet
 {
-    [SerializeField] PooledObject pooledObject;
     [SerializeField] float maxTime;
     float curTime;
+    private void Awake()
+    {
+        damage = 1;
+    }
     private void OnEnable()
     {
         curTime = 0;
@@ -20,7 +23,7 @@ public class YellowBullet : Bullet
         curTime += Time.deltaTime;
         if (curTime > maxTime)
         {
-            pooledObject.parentPool.ReturnPool(pooledObject);
+            parentPool.ReturnPool(this);
         }
     }
 }
