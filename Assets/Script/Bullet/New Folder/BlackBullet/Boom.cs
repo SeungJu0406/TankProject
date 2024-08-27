@@ -8,6 +8,7 @@ public class Boom : MonoBehaviour
     [SerializeField] int damage;
     float curTime;
     float scaleX, scaleY, scaleZ;
+    bool isHitBoom;
     private void OnEnable()
     {
         scaleX = boomSize;
@@ -47,11 +48,18 @@ public class Boom : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        IHit target = other.transform.parent.GetComponent<IHit>(); // 해당 콜라이더의 부모를 찾아서 그 부모의 컴포넌트 사용
-        if (target != null)
+        if (!isHitBoom)
         {
-           Debug.Log($"검사 후{other.gameObject.name}");
-           target.Hit(damage);
+            isHitBoom = true;
+            IHit target = other.transform.parent.GetComponent<IHit>();
+            if (target != null)
+            {
+                target.Hit(damage);
+            }
         }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        isHitBoom = false;
     }
 }
