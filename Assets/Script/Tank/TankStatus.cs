@@ -1,18 +1,51 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TankStatus : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] int maxHp;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] int curHp;
+
+    [SerializeField] float maxHitTime;
+
+    [SerializeField] float curHitTime;
+
+    private void Awake()
     {
-        
+        curHp = maxHp;
+        curHitTime = 0;
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<Monster>() == null)
+        {
+            return;
+        }
+        curHitTime += Time.deltaTime;
+        if (curHitTime > maxHitTime)
+        {
+            Hit();
+            curHitTime = 0;
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<Monster>() == null)
+        {
+            return;
+        }
+        curHitTime = 0;
+    }
+    void Hit()
+    {
+        curHp--;
+        if (curHp <= 0)
+        {
+            Die();
+        }
+    }
+    void Die()
+    {
+        Destroy(gameObject);
     }
 }

@@ -16,6 +16,8 @@ public class MonsterMover : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (target == null)
+            return;
         Move();
     }
 

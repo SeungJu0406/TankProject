@@ -240,6 +240,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7361587026275347511}
   - component: {fileID: 7361587026275347508}
+  - component: {fileID: 1756683756841326799}
+  - component: {fileID: 4782233394772716047}
+  - component: {fileID: 5969793982659031858}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Player
@@ -278,6 +281,59 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   rotateSpeed: 10
+--- !u!114 &1756683756841326799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7361587026275347509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ba9b679f3caf33469abe07e088b771f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 2
+  curHp: 0
+  maxHitTime: 2
+  curHitTime: 0
+--- !u!54 &4782233394772716047
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7361587026275347509}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &5969793982659031858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7361587026275347509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccf523da21505ec43969ed29a8d6f77c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nowMode: 0
+  tankMover: {fileID: 7361587026275347508}
+  topViewPosX: 0
+  topViewPosY: 30
+  topViewPosZ: -20
+  topViewRotX: 50
+  topViewRotY: 0
+  topViewRotZ: 0
+  turret: {fileID: 3779401692383397494}
 --- !u!1 &7361587026397244576
 GameObject:
   m_ObjectHideFlags: 0
