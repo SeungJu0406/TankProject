@@ -3,22 +3,26 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] Rigidbody rigidbody;
-    [SerializeField] float speed;
-
+    [SerializeField] Vector3 speed;
+    bool isfire;
     private void OnEnable()
     {
         rigidbody.velocity = Vector3.zero;
-        rigidbody.angularVelocity = Vector3.zero;
+        isfire = true;     
     }
     private void Update()
     {
-        Fly();
+        if (isfire)
+        {
+            Fire();
+            isfire = false;
+        }
     }
-    void Fly()
+    void Fire()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        rigidbody.AddForce(speed, ForceMode.Impulse); 
     }
-    public void SetSpeed(float speed)
+    public void SetSpeed(Vector3 speed)
     {
         this.speed = speed;
     }
