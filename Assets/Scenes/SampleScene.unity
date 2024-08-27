@@ -414,6 +414,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5969793982659031858, guid: 5420518ca10c2ac449f81be7b8ed9da5, type: 3}
+      propertyPath: rotateSpeed
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969793982659031858, guid: 5420518ca10c2ac449f81be7b8ed9da5, type: 3}
       propertyPath: topViewPosY
       value: 30
       objectReference: {fileID: 0}

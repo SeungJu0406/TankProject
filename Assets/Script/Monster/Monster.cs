@@ -5,10 +5,13 @@ using UnityEngine;
 public class Monster : MonoBehaviour, IHit
 {
     [HideInInspector] public MonsterPool monsterPool;
+    [SerializeField] Rigidbody rbMonster;
     [SerializeField] int maxHp;
     [SerializeField] int curHp;
     void OnEnable()
     {
+        rbMonster.velocity = Vector3.zero;
+        rbMonster.angularVelocity = Vector3.zero;
         curHp = maxHp;
     }
     public void Hit(int damage)

@@ -232,6 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterPool: {fileID: 0}
+  rbMonster: {fileID: 7741090117791261132}
   maxHp: 5
   curHp: 0
 --- !u!136 &3380221179558023430
@@ -260,6 +261,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df094700bf8f20c429ca741f1e28fa6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   moveSpeed: 1
   rotateSpeed: 3
