@@ -822,6 +822,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 4537115565098759681}
   speed: {x: 0, y: 0, z: 0}
+  pooledObject: {fileID: 2493424592970124264}
+  maxTime: 5
 --- !u!1 &3090970822634767891
 GameObject:
   m_ObjectHideFlags: 0
