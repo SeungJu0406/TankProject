@@ -13,7 +13,7 @@ public class Monster : MonoBehaviour, IHit
     public void Hit(int damage)
     {
         curHp -= damage;
-        if(curHp < 0)
+        if(curHp <= 0)
         {
             curHp = 0;
             Die();

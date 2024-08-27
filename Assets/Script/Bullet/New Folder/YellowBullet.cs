@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class YellowBullet : Bullet
 {
-    [SerializeField] float maxTime;
-    float curTime;
-    private void Awake()
-    {
-        damage = 1;
-    }
+    [SerializeField] float maxFlyTime;
+    float curFlyTime;
+
     private void OnEnable()
     {
-        curTime = 0;
+        curFlyTime = 0;
     }
     private void Update()
     {
@@ -20,8 +17,8 @@ public class YellowBullet : Bullet
     }
     void CheckTime()
     {
-        curTime += Time.deltaTime;
-        if (curTime > maxTime)
+        curFlyTime += Time.deltaTime;
+        if (curFlyTime > maxFlyTime)
         {
             parentPool.ReturnPool(this);
         }
