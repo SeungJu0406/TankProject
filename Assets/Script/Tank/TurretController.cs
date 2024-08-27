@@ -17,7 +17,7 @@ public class TurretController : MonoBehaviour
         if (x != 0)
         {
             if (150 < transform.eulerAngles.x && transform.eulerAngles.x < 360 - maxAngle && x > 0) { }
-            else if(0 < transform.eulerAngles.x && transform.eulerAngles.x < 150 && x < 0) { }
+            else if (0 < transform.eulerAngles.x && transform.eulerAngles.x < 150 && x < 0) { }
             else
             {
                 transform.Rotate(Vector3.left * x * rotateSpeed * Time.deltaTime);
@@ -25,7 +25,7 @@ public class TurretController : MonoBehaviour
         }
         if (y != 0)
         {
-            transform.Rotate(Vector3.up * y * rotateSpeed * Time.deltaTime);
+            transform.Rotate(Vector3.up * y * rotateSpeed * Time.deltaTime, Space.World);
         }
     }
 }
