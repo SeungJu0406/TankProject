@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7844167245799041474}
   - component: {fileID: 4075768532139035406}
   - component: {fileID: -997248424840429242}
-  - component: {fileID: 9021946939925873536}
   - component: {fileID: 7879693195042996999}
+  - component: {fileID: 4857169583956889381}
   m_Layer: 0
   m_Name: BlackBullet
   m_TagString: Untagged
@@ -38,6 +38,7 @@ Transform:
   - {fileID: 7076661955954634831}
   - {fileID: 535916396832370558}
   - {fileID: 1623214253066813866}
+  - {fileID: 6238281611594770726}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -120,20 +121,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &9021946939925873536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 977299556903191288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cb151bd7fc433742b2ac36c3c5a6eca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigidbody: {fileID: -997248424840429242}
-  speed: {x: 0, y: 0, z: 0}
 --- !u!114 &7879693195042996999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +136,23 @@ MonoBehaviour:
   parentPool: {fileID: 0}
   bulletType: 0
   returnTime: 4
+--- !u!114 &4857169583956889381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977299556903191288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0c66498ffef4cb46b7946d937bec1de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidbody: {fileID: -997248424840429242}
+  speed: {x: 0, y: 0, z: 0}
+  boomPool: {fileID: 3879716812795617381}
+  boomTime: 2
+  boomSize: 6
 --- !u!1 &1262614969652683767
 GameObject:
   m_ObjectHideFlags: 0
@@ -1876,6 +1880,52 @@ Transform:
   m_Father: {fileID: 535916396832370558}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8749725196791479174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6238281611594770726}
+  - component: {fileID: 3879716812795617381}
+  m_Layer: 0
+  m_Name: BoomPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6238281611594770726
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8749725196791479174}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2904576275237805978}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3879716812795617381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8749725196791479174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0223bdd3d4154e34cbd68edc673b56eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boom: {fileID: 8993688977686181224, guid: bd7da38172f8cc74e8d3df75dc1f95a4, type: 3}
+  size: 1
 --- !u!1 &8867102912083856847
 GameObject:
   m_ObjectHideFlags: 0

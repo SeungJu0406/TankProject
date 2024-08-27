@@ -60,7 +60,6 @@ public class ObjectPool : MonoBehaviour
 
         bulletType = BulletType.Red;
     }
-
     public PooledObject GetPool(BulletType type,Vector3 pos, Quaternion rot)
     {
         PooledObject bullet = null;

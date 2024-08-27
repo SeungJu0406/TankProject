@@ -2,27 +2,13 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] Rigidbody rigidbody;
+    [SerializeField] protected Rigidbody rigidbody;
     [SerializeField] public Vector3 speed;
-    //bool isfire;
     private void OnEnable()
     {
         rigidbody.velocity = Vector3.zero;
-        rigidbody.angularVelocity = Vector3.zero;
-        //isfire = true;     
+        rigidbody.angularVelocity = Vector3.zero;   
     }
-    private void Start()
-    {
-        //Fire();
-    }
-    //private void Update()
-    //{
-    //    if (isfire)
-    //    {
-    //        Fire();
-    //        isfire = false;
-    //    }
-    //}
     void Fire()
     {
         rigidbody.AddForce(speed, ForceMode.Impulse); 
