@@ -6,24 +6,32 @@ public enum BulletType { Red, Yellow, Black }
 public class PooledObject : MonoBehaviour
 {
     
-    public ObjectPool parentPool;
+    [HideInInspector]public ObjectPool parentPool;
     public BulletType bulletType;
-    [SerializeField] float returnTime;
-
+    [SerializeField] float returnTime = 2;
+    bool isBump;
     float curTime;
 
     private void OnEnable()
     {
+        isBump = false;
         curTime = 0;
     }
 
     void Update()
     {
-        curTime += Time.deltaTime;
-
-        if (curTime > returnTime) 
+        if(isBump)
         {
-            parentPool.ReturnPool(this);
+            curTime += Time.deltaTime;
+
+            if (curTime > returnTime)
+            {
+                parentPool.ReturnPool(this);
+            }
         }
+    }
+    private void OnCollisionEnter(Collision collision)
+    { 
+         isBump = true;
     }
 }
