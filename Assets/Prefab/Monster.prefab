@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 7741090117791261132}
   - component: {fileID: 1327628845392972377}
   - component: {fileID: 3380221179558023430}
+  - component: {fileID: 7732352323556623507}
   m_Layer: 8
   m_Name: Monster
   m_TagString: Untagged
@@ -231,7 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterPool: {fileID: 0}
-  maxHp: 10
+  maxHp: 5
   curHp: 0
 --- !u!136 &3380221179558023430
 CapsuleCollider:
@@ -247,3 +248,18 @@ CapsuleCollider:
   m_Height: 1.9953521
   m_Direction: 1
   m_Center: {x: 0, y: 0.97968704, z: 0}
+--- !u!114 &7732352323556623507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8575199270749379326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df094700bf8f20c429ca741f1e28fa6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  moveSpeed: 1
+  rotateSpeed: 3
