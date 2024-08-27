@@ -5,6 +5,7 @@ public class Boom : MonoBehaviour
     [HideInInspector] public BoomPool returnPool;
     [SerializeField] float boomTime;
     [SerializeField] float boomSize;
+    [SerializeField] int damage;
     float curTime;
     float scaleX, scaleY, scaleZ;
     private void OnEnable()
@@ -18,6 +19,10 @@ public class Boom : MonoBehaviour
     void Update()
     {
         PrintBoom();
+    }
+    public void SetDamage(int damage)
+    {
+        this.damage = damage;
     }
     public void SetTime(float boomTime)
     {
@@ -40,4 +45,13 @@ public class Boom : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        IHit target = other.transform.parent.GetComponent<IHit>(); // 해당 콜라이더의 부모를 찾아서 그 부모의 컴포넌트 사용
+        if (target != null)
+        {
+           Debug.Log($"검사 후{other.gameObject.name}");
+           target.Hit(damage);
+        }
+    }
 }

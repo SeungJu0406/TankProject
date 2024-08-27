@@ -7,8 +7,9 @@ public class YellowBullet : Bullet
     [SerializeField] float maxFlyTime;
     float curFlyTime;
 
-    private void OnEnable()
+    protected void OnEnable()
     {
+        base.OnEnable();
         curFlyTime = 0;
     }
     private void Update()
@@ -18,7 +19,7 @@ public class YellowBullet : Bullet
     void CheckTime()
     {
         curFlyTime += Time.deltaTime;
-        if (curFlyTime > maxFlyTime)
+        if (curFlyTime > maxFlyTime || isAttack)
         {
             parentPool.ReturnPool(this);
         }

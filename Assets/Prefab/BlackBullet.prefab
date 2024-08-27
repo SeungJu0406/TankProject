@@ -137,6 +137,7 @@ MonoBehaviour:
   boomPool: {fileID: 3879716812795617381}
   boomTime: 2
   boomSize: 6
+  boomDamage: 1
 --- !u!1 &1262614969652683767
 GameObject:
   m_ObjectHideFlags: 0

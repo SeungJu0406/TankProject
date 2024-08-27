@@ -6,15 +6,15 @@ public class Bullet : MonoBehaviour
     [HideInInspector] public ObjectPool parentPool;
     public BulletType bulletType;
     [SerializeField] float returnTime;
-    bool isBump;
+    protected bool isBump;
     float curTime;
 
     [SerializeField] public Vector3 speed;
     [SerializeField] protected Rigidbody rigidbody;
     [SerializeField] protected int damage;
     protected bool isHit;
-    bool isAttack;
-    private void OnEnable()
+    protected bool isAttack;
+    protected void OnEnable()
     {
         isBump = false;
         isAttack = false;
@@ -30,10 +30,6 @@ public class Bullet : MonoBehaviour
     {
         this.speed = speed;
     }
-    public void SetIsHit(bool isHit)
-    {
-        this.isHit = isHit;
-    }
     void Fire()
     {
         rigidbody.AddForce(speed, ForceMode.Impulse); 
@@ -44,9 +40,9 @@ public class Bullet : MonoBehaviour
         {
             curTime += Time.deltaTime;
 
-            if (curTime > returnTime)
+            if (curTime > returnTime || isAttack)
             {
-                SetIsHit(true);
+                isHit = true;
                 parentPool.ReturnPool(this);
             }
         }
@@ -59,9 +55,8 @@ public class Bullet : MonoBehaviour
         IHit target = collision.gameObject.GetComponent<IHit>();
         if (target != null) 
         {
-            parentPool.ReturnPool(this);
-            target.Hit(damage); 
-            isAttack = true;
+            target.Hit(damage);
+            isAttack = true;        
         }
     }
 }
