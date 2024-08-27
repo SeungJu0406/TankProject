@@ -34,7 +34,9 @@ public class FireBullet : MonoBehaviour
             if (instance == null)
                 return;
             Bullet bullet = instance.GetComponent<Bullet>();
+            Rigidbody rbBullet = instance.GetComponent<Rigidbody>();
             bullet.SetSpeed(Point.forward * bulletSpeed);
+            rbBullet.AddForce(bullet.speed, ForceMode.Impulse);
             bulletSpeed = minBulletSpped;
         }
     }

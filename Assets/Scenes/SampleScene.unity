@@ -405,6 +405,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2446865387862936538, guid: 5420518ca10c2ac449f81be7b8ed9da5, type: 3}
+      propertyPath: isInfinityBullet
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7361587026275347509, guid: 5420518ca10c2ac449f81be7b8ed9da5, type: 3}
       propertyPath: m_Name
       value: Tank
