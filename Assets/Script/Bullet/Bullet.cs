@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     private void OnEnable()
     {
         rigidbody.velocity = Vector3.zero;
+        rigidbody.angularVelocity = Vector3.zero;
         isfire = true;     
     }
     private void Update()
