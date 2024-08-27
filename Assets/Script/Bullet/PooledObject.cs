@@ -7,6 +7,7 @@ public class PooledObject : MonoBehaviour
 {
     
     [HideInInspector]public ObjectPool parentPool;
+    [SerializeField] Bullet bullet;
     public BulletType bulletType;
     [SerializeField] float returnTime = 2;
     bool isBump;
@@ -14,7 +15,8 @@ public class PooledObject : MonoBehaviour
 
     private void OnEnable()
     {
-        isBump = false;
+        bullet = this.GetComponent<Bullet>();
+        isBump = false;      
         curTime = 0;
     }
 
@@ -26,6 +28,7 @@ public class PooledObject : MonoBehaviour
 
             if (curTime > returnTime)
             {
+                bullet.SetIsHit(true);
                 parentPool.ReturnPool(this);
             }
         }

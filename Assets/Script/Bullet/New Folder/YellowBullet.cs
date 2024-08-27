@@ -13,8 +13,12 @@ public class YellowBullet : Bullet
     }
     private void Update()
     {
+        CheckTime();
+    }
+    void CheckTime()
+    {
         curTime += Time.deltaTime;
-        if (curTime > maxTime) 
+        if (curTime > maxTime)
         {
             pooledObject.parentPool.ReturnPool(pooledObject);
         }
