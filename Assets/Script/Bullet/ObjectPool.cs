@@ -9,9 +9,9 @@ public class ObjectPool : MonoBehaviour
     [SerializeField] Transform redPool;
     [SerializeField] Transform yellowPool;
     [SerializeField] Transform blackPool;
-    Stack<Bullet> redBullets;
-    Stack<Bullet> yellowBullets;
-    Stack<Bullet> blackBullets;
+    Queue<Bullet> redBullets;
+    Queue<Bullet> yellowBullets;
+    Queue<Bullet> blackBullets;
     [SerializeField] bool isInfinityBullet;
     [SerializeField] int size;
 
@@ -26,9 +26,9 @@ public class ObjectPool : MonoBehaviour
 
     void Init()
     {
-        redBullets = new Stack<Bullet>(size);
-        yellowBullets = new Stack<Bullet>(size);
-        blackBullets = new Stack<Bullet>(size);
+        redBullets = new Queue<Bullet>(size);
+        yellowBullets = new Queue<Bullet>(size);
+        blackBullets = new Queue<Bullet>(size);
 
         for (int i = 0; i < size; i++)
         {
@@ -37,7 +37,7 @@ public class ObjectPool : MonoBehaviour
             red.bulletType = BulletType.Red;
             red.transform.parent = redPool;
             red.parentPool = this;
-            redBullets.Push(red);
+            redBullets.Enqueue(red);
         }
         for (int i = 0; i < size; i++)
         {
@@ -46,7 +46,7 @@ public class ObjectPool : MonoBehaviour
             yellow.bulletType = BulletType.Yellow;
             yellow.transform.parent = yellowPool;
             yellow.parentPool = this;
-            yellowBullets.Push(yellow);
+            yellowBullets.Enqueue(yellow);
         }
         for (int i = 0; i < size; i++)
         {
@@ -55,7 +55,7 @@ public class ObjectPool : MonoBehaviour
             black.bulletType = BulletType.Black;
             black.transform.parent = blackPool;
             black.parentPool = this;
-            blackBullets.Push(black);
+            blackBullets.Enqueue(black);
         }
 
         bulletType = BulletType.Red;
@@ -69,7 +69,7 @@ public class ObjectPool : MonoBehaviour
             case BulletType.Red:
                 if(redBullets.Count > 0)
                 {
-                    bullet = redBullets.Pop();
+                    bullet = redBullets.Dequeue();
                     bullet.transform.position = pos;
                     bullet.transform.rotation = rot;
                     bullet.transform.parent = null;
@@ -85,7 +85,7 @@ public class ObjectPool : MonoBehaviour
             case BulletType.Yellow:
                 if (yellowBullets.Count > 0)
                 {
-                    bullet = yellowBullets.Pop();
+                    bullet = yellowBullets.Dequeue();
                     bullet.transform.position = pos;
                     bullet.transform.rotation = rot;
                     bullet.transform.parent = null;
@@ -101,7 +101,7 @@ public class ObjectPool : MonoBehaviour
             case BulletType.Black:
                 if (blackBullets.Count > 0)
                 {
-                    bullet = blackBullets.Pop();
+                    bullet = blackBullets.Dequeue();
                     bullet.transform.position = pos;
                     bullet.transform.rotation = rot;
                     bullet.transform.parent = null;
@@ -127,17 +127,17 @@ public class ObjectPool : MonoBehaviour
         if(returnBullet.bulletType == BulletType.Red)
         {
             returnBullet.transform.parent = redPool;
-            redBullets.Push(returnBullet);
+            redBullets.Enqueue(returnBullet);
         }
         else if(returnBullet.bulletType == BulletType.Yellow)
         {
             returnBullet.transform.parent = yellowPool;
-            yellowBullets.Push(returnBullet);
+            yellowBullets.Enqueue(returnBullet);
         }
         else if (returnBullet.bulletType == BulletType.Black)
         {
             returnBullet.transform.parent = blackPool;
-            blackBullets.Push(returnBullet);
+            blackBullets.Enqueue(returnBullet);
         }
     }
 }

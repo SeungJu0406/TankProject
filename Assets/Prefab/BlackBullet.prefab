@@ -106,7 +106,7 @@ MonoBehaviour:
   rigidbody: {fileID: 187803218803345187}
   damage: 1
   boomPool: {fileID: 4022315892811767092}
-  boomTime: 2
+  boomTime: 1
   boomSize: 6
   boomDamage: 3
 --- !u!54 &187803218803345187
