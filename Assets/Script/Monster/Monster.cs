@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour, IHit
 {
+    [HideInInspector] public MonsterPool monsterPool;
     [SerializeField] int maxHp;
     [SerializeField] int curHp;
-    void Awake()
+    void OnEnable()
     {
         curHp = maxHp;
     }
@@ -21,7 +22,7 @@ public class Monster : MonoBehaviour, IHit
     }
     void Die()
     {
-        Destroy(gameObject);
+        monsterPool.ReturnPool(this);
     }
 
 }

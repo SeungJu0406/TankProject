@@ -5,7 +5,7 @@ using UnityEngine;
 public class BoomPool : MonoBehaviour
 {
     [SerializeField] Boom boom;
-    [HideInInspector] Stack<Boom> booms;
+    [HideInInspector] Queue<Boom> booms;
     [SerializeField] int size;
 
     private void Awake()
@@ -14,21 +14,21 @@ public class BoomPool : MonoBehaviour
     }
     private void Init()
     {
-        booms = new Stack<Boom>(size);
+        booms = new Queue<Boom>(size);
         for (int i = 0; i < size; i++) 
         {
             Boom instance = Instantiate(boom);
             instance.gameObject.SetActive(false);
             instance.transform.parent = transform;
-            instance.returnPool = this;
-            booms.Push(instance);
+            instance.boomPool = this;
+            booms.Enqueue(instance);
         }
     }
     public Boom GetPool(Vector3 pos, Quaternion rot, float boomTime, float boomSize)
     {
         if (booms.Count > 0)
         {
-            Boom instance = booms.Pop();
+            Boom instance = booms.Dequeue();
             instance.transform.position = pos;
             instance.transform.rotation = rot;
             instance.transform.parent = null;
@@ -37,13 +37,13 @@ public class BoomPool : MonoBehaviour
             instance.gameObject.SetActive(true);
             return instance;
         }
-        return null;
+       return null;
     }
 
     public void ReturnPool(Boom returnBoom)
     {
         returnBoom.gameObject.transform.parent = transform;
         returnBoom.gameObject.SetActive(false);
-        booms.Push(returnBoom);
+        booms.Enqueue(returnBoom);
     }
 }

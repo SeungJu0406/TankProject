@@ -110,5 +110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78dfe27ccd341724ead001a7ab0c565b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  returnPool: {fileID: 0}
-  boomTIme: 0
+  boomTime: 0
+  boomSize: 0
+  damage: 3

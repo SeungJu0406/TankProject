@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Boom : MonoBehaviour
 {
-    [HideInInspector] public BoomPool returnPool;
+    [SerializeField] public BoomPool boomPool;
     [SerializeField] float boomTime;
     [SerializeField] float boomSize;
-    [SerializeField] int damage;
+    [SerializeField] int damage;   
     float curTime;
     float scaleX, scaleY, scaleZ;
     bool isHitBoom;
@@ -42,24 +42,16 @@ public class Boom : MonoBehaviour
         transform.localScale = new Vector3(scaleX, scaleY, scaleZ);
         if (curTime > boomTime)
         {
-            returnPool.ReturnPool(this);
+            boomPool.ReturnPool(this);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!isHitBoom)
+        IHit target = other.gameObject.GetComponent<IHit>();
+        if (target != null)
         {
-            isHitBoom = true;
-            IHit target = other.transform.parent.GetComponent<IHit>();
-            if (target != null)
-            {
-                target.Hit(damage);
-            }
+            target.Hit(damage);
         }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        isHitBoom = false;
     }
 }
