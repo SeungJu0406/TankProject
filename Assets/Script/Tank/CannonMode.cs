@@ -17,7 +17,7 @@ public class CannonMode : MonoBehaviour
         float x = Input.GetAxis("Mouse X"); // 마우스 x축 움직임 량
         float y = Input.GetAxis("Mouse Y");
 
-        turret.transform.Rotate(Vector3.up, rotateSpeed * x * Time.deltaTime);
+        turret.transform.Rotate(Vector3.up, rotateSpeed * x * Time.deltaTime, Space.World);
         turret.transform.Rotate(Vector3.left, rotateSpeed * y * Time.deltaTime);
     }
 }

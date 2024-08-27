@@ -122,6 +122,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &97394480 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7582869785020867147, guid: 5420518ca10c2ac449f81be7b8ed9da5, type: 3}
+  m_PrefabInstance: {fileID: 1107589827}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa7f8f591db93404fa31fe69117f6839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &631845345
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,30 +416,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1756683756841326799, guid: 5420518ca10c2ac449f81be7b8ed9da5, type: 3}
-      propertyPath: maxHp
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2446865387862936538, guid: 5420518ca10c2ac449f81be7b8ed9da5, type: 3}
-      propertyPath: isInfinityBullet
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5969793982659031858, guid: 5420518ca10c2ac449f81be7b8ed9da5, type: 3}
-      propertyPath: rotateSpeed
-      value: 360
-      objectReference: {fileID: 0}
-    - target: {fileID: 5969793982659031858, guid: 5420518ca10c2ac449f81be7b8ed9da5, type: 3}
-      propertyPath: topViewPosY
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 5969793982659031858, guid: 5420518ca10c2ac449f81be7b8ed9da5, type: 3}
-      propertyPath: topViewPosZ
-      value: -20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5969793982659031858, guid: 5420518ca10c2ac449f81be7b8ed9da5, type: 3}
-      propertyPath: topViewRotX
-      value: 50
-      objectReference: {fileID: 0}
+      propertyPath: cannonMode
+      value: 
+      objectReference: {fileID: 97394480}
     - target: {fileID: 7361587026275347509, guid: 5420518ca10c2ac449f81be7b8ed9da5, type: 3}
       propertyPath: m_Name
       value: Tank
