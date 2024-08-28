@@ -123,6 +123,7 @@ public class FPSController : MonoBehaviour
         else if (Input.GetButtonUp("Fire1"))
         {
             Grenade grenade = grenadePool.GetPool(muzzlePoint.position, muzzlePoint.rotation);
+            if (grenade == null) return;
             Rigidbody grenadeRb = grenade.GetComponent<Rigidbody>();
             grenadeRb.AddForce(muzzlePoint.forward * curThrowPower, ForceMode.Impulse);
             curThrowPower = minThrowPower;
