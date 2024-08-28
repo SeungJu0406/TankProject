@@ -45,6 +45,7 @@ public class FireBullet : MonoBehaviour
             Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
             bullet.SetSpeed(Point.forward * bulletSpeed);
             bulletRb.AddForce(bullet.speed, ForceMode.Impulse);
+            bulletRb.useGravity = true;
             bulletSpeed = minBulletSpped;
         }
     }
@@ -63,6 +64,7 @@ public class FireBullet : MonoBehaviour
                 if (bullet == null) return;
                 Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
                 bulletRb.velocity = Point.forward * bulletSpeed*3;
+                bulletRb.useGravity = false;
             }
         }
     }
