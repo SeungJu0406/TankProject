@@ -457,29 +457,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: FPS
       objectReference: {fileID: 0}
-    - target: {fileID: 8551197882590542392, guid: 777d296fcf0936b41a29a9e7f1131ceb, type: 3}
-      propertyPath: maxThrowPower
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 8551197882590542392, guid: 777d296fcf0936b41a29a9e7f1131ceb, type: 3}
-      propertyPath: minThrowPower
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 8551197882590542393, guid: 777d296fcf0936b41a29a9e7f1131ceb, type: 3}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8551197882590542393, guid: 777d296fcf0936b41a29a9e7f1131ceb, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8551197882590542393, guid: 777d296fcf0936b41a29a9e7f1131ceb, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8551197882590542393, guid: 777d296fcf0936b41a29a9e7f1131ceb, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8551197882590542393, guid: 777d296fcf0936b41a29a9e7f1131ceb, type: 3}
       propertyPath: m_LocalPosition.x

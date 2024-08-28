@@ -8,6 +8,10 @@ public class FPSController : MonoBehaviour
 
     [SerializeField] GrenadePool grenadePool;
 
+    [SerializeField] GameObject gun;
+
+    [SerializeField] GameObject grenade;
+
     [Header("Player Statue")]
     [SerializeField] float moveSpeed;
 
@@ -38,8 +42,13 @@ public class FPSController : MonoBehaviour
         layerMask = 1 << LayerMask.NameToLayer("Monster");
         rotateSpeed *= 10;
         transform.eulerAngles = Vector3.zero;
-        curMode = Mode.Bullet;
+
         chargeTime = (maxThrowPower - minThrowPower) / maxChargeTime;
+        curThrowPower = minThrowPower;
+
+        curMode = Mode.Bullet;
+        grenade.SetActive(false);
+
     }
     private void Start()
     {
@@ -86,7 +95,7 @@ public class FPSController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         transform.Rotate(Vector3.up * x * rotateSpeed * Time.deltaTime, Space.World);
-        transform.Rotate(Vector3.left * y * rotateSpeed * Time.deltaTime);
+        muzzlePoint.transform.Rotate(Vector3.left * y * rotateSpeed * Time.deltaTime);
     }
 
     void FireBullet()
@@ -125,10 +134,14 @@ public class FPSController : MonoBehaviour
         if(Input.GetButtonDown("Fire Bullet"))
         {
             curMode = Mode.Bullet;
+            gun.SetActive(true);
+            grenade.SetActive(false);
         }
         else if (Input.GetButtonDown("Throw Grenade"))
         {
             curMode = Mode.Grenade;
+            grenade.SetActive(true);
+            gun.SetActive(false);        
         }
     }
 
