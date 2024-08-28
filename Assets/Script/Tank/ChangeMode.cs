@@ -6,7 +6,6 @@ public class ChangeMode : MonoBehaviour
     
 
     [SerializeField] public TankMode curMode;
-    [SerializeField] TankMover tankMover;
     [HideInInspector] Camera cam;
     [SerializeField] TurretController turret;
     [SerializeField] Transform CannonView;
@@ -16,7 +15,8 @@ public class ChangeMode : MonoBehaviour
     [SerializeField] float topViewRotX;
     [SerializeField] float topViewRotY;
     [SerializeField] float topViewRotZ;
-    
+
+    [SerializeField] GameObject aimUI;
     private void Awake()
     {
         curMode = TankMode.TopView;
@@ -41,6 +41,7 @@ public class ChangeMode : MonoBehaviour
     void ChangeCannon()
     {
         curMode = TankMode.Cannon;
+        aimUI.SetActive(true);
 
         cam.transform.parent = transform;
         cam.transform.parent = turret.transform;
@@ -53,7 +54,8 @@ public class ChangeMode : MonoBehaviour
     void ChangeTopView()
     {
         curMode = TankMode.TopView;
-        
+        aimUI.SetActive(false);
+
         turret.transform.parent = transform;
         cam.transform.parent = null;
         Cursor.visible = true;

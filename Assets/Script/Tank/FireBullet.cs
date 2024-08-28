@@ -10,6 +10,8 @@ public class FireBullet : MonoBehaviour
     [SerializeField] float maxBulletSpeed;
     [SerializeField] Transform Point;
     [SerializeField] BulletType nowType;
+
+    [SerializeField] ChangeMode changeMode;
     private void Awake()
     {
         bulletSpeed = minBulletSpped;
@@ -17,10 +19,17 @@ public class FireBullet : MonoBehaviour
     private void Update()
     {
         SelectBullet();
-        Fire();
+        if (changeMode.curMode == TankMode.TopView )
+        {
+            TopViewFire();
+        }
+        else if(changeMode.curMode == TankMode.Cannon)
+        {
+            CannonFire();
+        }
     }
     
-    void Fire()
+    void TopViewFire()
     {
         if (Input.GetButton("Jump"))
         {
@@ -30,14 +39,31 @@ public class FireBullet : MonoBehaviour
         }
         if (Input.GetButtonUp("Jump"))
         {
-            Bullet instance = bulletPool.GetPool(nowType, Point.position, Point.rotation);
-            if (instance == null)
+            Bullet bullet = bulletPool.GetPool(nowType, Point.position, Point.rotation);
+            if (bullet == null)
                 return;
-            Bullet bullet = instance.GetComponent<Bullet>();
-            Rigidbody rbBullet = instance.GetComponent<Rigidbody>();
+            Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
             bullet.SetSpeed(Point.forward * bulletSpeed);
-            rbBullet.AddForce(bullet.speed, ForceMode.Impulse);
+            bulletRb.AddForce(bullet.speed, ForceMode.Impulse);
             bulletSpeed = minBulletSpped;
+        }
+    }
+
+    void CannonFire()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Debug.DrawRay(Point.position, Point.forward * 100f, Color.red);
+            nowType = BulletType.Black;
+            int laymast = 1 << LayerMask.NameToLayer("Monster");
+            
+            if(Physics.Raycast(Point.position, Point.forward,100f, laymast))
+            {
+                Bullet bullet = bulletPool.GetPool(nowType, Point.position, Point.rotation);
+                if (bullet == null) return;
+                Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
+                bulletRb.velocity = Point.forward * bulletSpeed*3;
+            }
         }
     }
     void SelectBullet()
