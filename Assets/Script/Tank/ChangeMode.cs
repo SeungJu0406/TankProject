@@ -1,15 +1,15 @@
 using UnityEngine;
 
+public enum TankMode { TopView, Cannon }
 public class ChangeMode : MonoBehaviour
 {
-    enum Mode { TopView, Cannon }
+    
 
-    [SerializeField] Mode nowMode;
+    [SerializeField] public TankMode curMode;
     [SerializeField] TankMover tankMover;
     [HideInInspector] Camera cam;
     [SerializeField] TurretController turret;
     [SerializeField] Transform CannonView;
-    [SerializeField] CannonMode cannonMode;
     [SerializeField] float topViewPosX;
     [SerializeField] float topViewPosY;
     [SerializeField] float topViewPosZ;
@@ -19,7 +19,7 @@ public class ChangeMode : MonoBehaviour
     
     private void Awake()
     {
-        nowMode = Mode.TopView;
+        curMode = TankMode.TopView;
         cam = Camera.main;
         ChangeTopView();
     }
@@ -28,11 +28,11 @@ public class ChangeMode : MonoBehaviour
     {
         if (Input.GetButtonDown("Cannon Mode"))
         {
-            if (nowMode == Mode.TopView)
+            if (curMode == TankMode.TopView)
             {
                 ChangeCannon();
             }
-            else if (nowMode == Mode.Cannon)
+            else if (curMode == TankMode.Cannon)
             {
                 ChangeTopView();
             }
@@ -40,11 +40,7 @@ public class ChangeMode : MonoBehaviour
     }
     void ChangeCannon()
     {
-        nowMode = Mode.Cannon;
-        tankMover.enabled = false;
-        turret.enabled = false;
-
-        cannonMode.enabled = true;
+        curMode = TankMode.Cannon;
 
         cam.transform.parent = transform;
         cam.transform.parent = turret.transform;
@@ -56,11 +52,7 @@ public class ChangeMode : MonoBehaviour
     }
     void ChangeTopView()
     {
-        nowMode = Mode.TopView;
-        tankMover.enabled = true;
-        turret.enabled=true;
-
-        cannonMode.enabled = false;
+        curMode = TankMode.TopView;
         
         turret.transform.parent = transform;
         cam.transform.parent = null;

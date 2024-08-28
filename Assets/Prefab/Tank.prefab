@@ -260,8 +260,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cace72e8dafe00349a81b8eabd84b769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  changeMode: {fileID: 5969793982659031858}
   rotateSpeed: 50
   maxAngle: 60
+  cannonModeRotateSpeed: 540
 --- !u!1 &7361587026275347509
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,7 +277,6 @@ GameObject:
   - component: {fileID: 1756683756841326799}
   - component: {fileID: 4782233394772716047}
   - component: {fileID: 5969793982659031858}
-  - component: {fileID: 7582869785020867147}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Player
@@ -312,6 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37ac5998c0e36474f9966e994ea50a52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  changeMode: {fileID: 5969793982659031858}
   moveSpeed: 3
   rotateSpeed: 10
 --- !u!114 &1756683756841326799
@@ -358,31 +360,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccf523da21505ec43969ed29a8d6f77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nowMode: 0
+  curMode: 0
   tankMover: {fileID: 7361587026275347508}
   turret: {fileID: 3779401692383397494}
   CannonView: {fileID: 1117471045061541375}
-  cannonMode: {fileID: 0}
   topViewPosX: 0
   topViewPosY: 30
   topViewPosZ: -20
   topViewRotX: 50
   topViewRotY: 0
   topViewRotZ: 0
---- !u!114 &7582869785020867147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7361587026275347509}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7f8f591db93404fa31fe69117f6839, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turret: {fileID: 3779401692383397494}
-  rotateSpeed: 360
 --- !u!1 &7361587026397244576
 GameObject:
   m_ObjectHideFlags: 0

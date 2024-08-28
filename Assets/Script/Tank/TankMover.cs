@@ -2,13 +2,18 @@ using UnityEngine;
 
 public class TankMover : MonoBehaviour
 {
+    [SerializeField] ChangeMode changeMode;
+
     [SerializeField] float moveSpeed;
     [SerializeField] float rotateSpeed;
 
 
     private void Update()
     {
-        Move();
+        if (changeMode.curMode == TankMode.TopView)
+        {
+            Move();
+        }
     }
     void Move()
     {
