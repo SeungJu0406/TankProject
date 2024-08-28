@@ -112,6 +112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8551197882590542393}
   - component: {fileID: 8551197882590542392}
+  - component: {fileID: 6025886204584228869}
   m_Layer: 0
   m_Name: FPS
   m_TagString: Player
@@ -150,10 +151,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   muzzlePoint: {fileID: 3741782431731089728}
+  grenadePool: {fileID: 6025886204584228869}
   moveSpeed: 5
   rotateSpeed: 100
+  curMode: 0
   range: 100
   damage: 1
+  maxThrowPower: 15
+  minThrowPower: 30
+  maxChargeTime: 2
+--- !u!114 &6025886204584228869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8551197882590542374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3791f16cbeb1e8140ae83fab30cf8db5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grenade: {fileID: 5218315872951170946, guid: 5b4e2ff15e0227849a67badf133b0bf9, type: 3}
+  size: 5
 --- !u!1 &8618365579211562010
 GameObject:
   m_ObjectHideFlags: 0
