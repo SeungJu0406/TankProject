@@ -33,6 +33,8 @@ public class FPSController : MonoBehaviour
 
     [SerializeField] float reloadTime;
 
+    bool isFireAble;
+
     [Header("Grenade Statue")]
     [SerializeField] float maxThrowPower;
 
@@ -63,6 +65,7 @@ public class FPSController : MonoBehaviour
         transform.eulerAngles = Vector3.zero;
 
         curBulletCount = maxBulletCount;
+        isFireAble = true;
 
         chargeTime = (maxThrowPower - minThrowPower) / maxChargeTime;
         curThrowPower = minThrowPower;
@@ -85,7 +88,7 @@ public class FPSController : MonoBehaviour
         switch (curMode)
         {
             case Mode.Bullet:
-                FireBullet();
+                Fire();
                 break;
             case Mode.Grenade:
                 ThrowGrenade();
@@ -119,20 +122,18 @@ public class FPSController : MonoBehaviour
         muzzlePoint.transform.Rotate(Vector3.left * rotateDir.y * rotateSpeed * Time.deltaTime);
     }
 
-    void FireBullet()
+    void Fire()
     {
-
-        if (curBulletCount <= 0)
+        Reload();
+        if (!isFireAble)
         {
             if (gunShooter != null)
             {
-                StopCoroutine(gunShooter); 
+                StopCoroutine(gunShooter);
                 gunShooter = null;
-                reloader = StartCoroutine(Reload());
-                curBulletCount = 0;
             }
             return;
-        }
+        }       
         if (Input.GetButton("Fire1"))
         {          
             if (gunShooter == null) 
@@ -145,7 +146,19 @@ public class FPSController : MonoBehaviour
             StopCoroutine(gunShooter);
             gunShooter = null;
         }
- 
+        if (curBulletCount <= 0) isFireAble = false;
+    }
+
+    void Reload()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (isFireAble)
+            {
+                reloader = StartCoroutine(ReloadBullet());
+                isFireAble = false;
+            }
+        }
     }
 
     IEnumerator ShootBullet()
@@ -163,13 +176,14 @@ public class FPSController : MonoBehaviour
         }
     }
 
-    IEnumerator Reload()
+    IEnumerator ReloadBullet()
     {
         WaitForSeconds delay = new WaitForSeconds(reloadTime);
         Debug.Log("장전중");
         yield return delay;
         Debug.Log("장전 완료");
         curBulletCount = maxBulletCount;
+        isFireAble = true;
     }
     void ThrowGrenade()
     {
