@@ -70,15 +70,15 @@ public class FireBullet : MonoBehaviour
     }
     void SelectBullet()
     {
-        if (Input.GetButtonDown("SelectRed"))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             nowType = BulletType.Red;
         }
-        else if (Input.GetButtonDown("SelectYellow"))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             nowType = BulletType.Yellow;
         }
-        else if (Input.GetButtonDown("SelectBlack"))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             nowType = BulletType.Black;
         }

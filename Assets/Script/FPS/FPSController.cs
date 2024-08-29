@@ -35,7 +35,7 @@ public class FPSController : MonoBehaviour
 
     bool isFireAble;
 
-    bool isReload;
+    [HideInInspector] public bool isReload;
 
     [Header("Grenade Statue")]
     [SerializeField] float maxThrowPower;
@@ -68,7 +68,6 @@ public class FPSController : MonoBehaviour
 
         curBulletCount = maxBulletCount;
         isFireAble = true;
-        isReload = true;
 
         chargeTime = (maxThrowPower - minThrowPower) / maxChargeTime;
         curThrowPower = minThrowPower;
@@ -160,7 +159,7 @@ public class FPSController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if (isReload)
+            if (!isReload)
             {
                 reloader = StartCoroutine(ReloadBullet());
                 isFireAble = false;
@@ -186,13 +185,11 @@ public class FPSController : MonoBehaviour
     IEnumerator ReloadBullet()
     {
         WaitForSeconds delay = new WaitForSeconds(reloadTime);
-        Debug.Log("장전중");
-        isReload = false;
+        isReload = true;
         yield return delay;
-        Debug.Log("장전 완료");
         curBulletCount = maxBulletCount;
         isFireAble = true;
-        isReload = true;
+        isReload = false ;
     }
     void ThrowGrenade()
     {

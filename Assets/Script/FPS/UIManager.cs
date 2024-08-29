@@ -39,7 +39,14 @@ public class UIManager : MonoBehaviour
         {
             bulletUI.color = Color.black;
         }
-        bulletUI.text = $"{player.curBulletCount}/{player.maxBulletCount}";
+        if (player.isReload) 
+        {
+            bulletUI.text = $"{player.curBulletCount}/{player.maxBulletCount}\n ¿Â¿¸¡ﬂ";
+        }
+        else
+        {
+            bulletUI.text = $"{player.curBulletCount}/{player.maxBulletCount}";
+        }
     }
 
     void PrintGranadeMode()

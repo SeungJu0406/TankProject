@@ -26,7 +26,7 @@ public class ChangeMode : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Cannon Mode"))
+        if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             if (curMode == TankMode.TopView)
             {

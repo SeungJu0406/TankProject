@@ -72,10 +72,7 @@ public class MonsterPool : MonoBehaviour
     IEnumerator Respawn(Monster monster)
     {
         WaitForSeconds delay = new WaitForSeconds(respawnTime);
-        Debug.Log($"{monster.gameObject.name}이 부활 중");
         yield return delay;
-        Debug.Log($"{monster.gameObject.name}이 부활!");
         GetPool();
-
     }
 }
