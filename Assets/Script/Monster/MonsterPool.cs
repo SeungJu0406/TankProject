@@ -12,30 +12,29 @@ public class MonsterPool : MonoBehaviour
 
     [SerializeField] float spawnPos;
 
-    [SerializeField] float cycleTime;
+    [SerializeField] float respawnTime;
 
     float curTime;
+
+    Coroutine respawnRoutine;
     private void Awake()
     {
        monsters = new Stack<Monster>(size);
         for (int i = 0; i < size; i++) 
         {
             Monster instance = Instantiate(monster);
+            instance.gameObject.name = $"Monster - {i}";
             instance.gameObject.SetActive(false);
             instance.transform.parent = transform;
             instance.monsterPool = this;
             monsters.Push(instance);
         }
-        curTime = cycleTime;
     }
-
-    private void Update()
+    private void Start()
     {
-        curTime += Time.deltaTime;
-        if (curTime > cycleTime) 
+        for(int i =0; i < size; i++)
         {
             GetPool();
-            curTime = 0;
         }
     }
 
@@ -66,6 +65,17 @@ public class MonsterPool : MonoBehaviour
     {
         instance.transform.parent = transform;
         instance.gameObject.SetActive(false);
+        respawnRoutine = StartCoroutine(Respawn(instance));
         monsters.Push(instance);
+    }
+
+    IEnumerator Respawn(Monster monster)
+    {
+        WaitForSeconds delay = new WaitForSeconds(respawnTime);
+        Debug.Log($"{monster.gameObject.name}이 부활 중");
+        yield return delay;
+        Debug.Log($"{monster.gameObject.name}이 부활!");
+        GetPool();
+
     }
 }

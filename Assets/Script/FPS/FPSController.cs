@@ -214,13 +214,13 @@ public class FPSController : MonoBehaviour
 
     void ChangeMode()
     {
-        if (Input.GetButtonDown("Fire Bullet"))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             curMode = Mode.Bullet;
             gun.SetActive(true);
             grenade.SetActive(false);
         }
-        else if (Input.GetButtonDown("Throw Grenade"))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             curMode = Mode.Grenade;
             grenade.SetActive(true);
