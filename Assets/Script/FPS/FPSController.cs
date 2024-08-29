@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class FPSController : MonoBehaviour
@@ -37,6 +38,12 @@ public class FPSController : MonoBehaviour
 
     int layerMask;
 
+    Vector3 moveDir;
+
+    Vector3 rotateDir;
+
+    Coroutine granadeCharger; 
+
     private void Awake()
     {
         layerMask = 1 << LayerMask.NameToLayer("Monster");
@@ -71,31 +78,31 @@ public class FPSController : MonoBehaviour
                 break;
             default:
                 break;
-        }   
+        }
     }
+
     void Move()
     {
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
 
-        Vector3 moveDir = new Vector3(x, 0, z);
+        moveDir = new Vector3(x, 0, z);
         moveDir.Normalize();
 
         transform.Translate(moveDir * moveSpeed * Time.deltaTime);
-
-
     }
+
 
     void Rotate()
     {
-        float x = Input.GetAxisRaw("Mouse X");
-        float y = Input.GetAxisRaw("Mouse Y");
+        rotateDir.x = Input.GetAxisRaw("Mouse X");
+        rotateDir.y = Input.GetAxisRaw("Mouse Y");
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        transform.Rotate(Vector3.up * x * rotateSpeed * Time.deltaTime, Space.World);
-        muzzlePoint.transform.Rotate(Vector3.left * y * rotateSpeed * Time.deltaTime);
+        transform.Rotate(Vector3.up * rotateDir.x * rotateSpeed * Time.deltaTime, Space.World);
+        muzzlePoint.transform.Rotate(Vector3.left * rotateDir.y * rotateSpeed * Time.deltaTime);
     }
 
     void FireBullet()
@@ -112,16 +119,14 @@ public class FPSController : MonoBehaviour
 
     void ThrowGrenade()
     {
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
         {
-            curThrowPower += chargeTime * Time.deltaTime;
-            if(curThrowPower > maxThrowPower)
-            {
-                curThrowPower = maxThrowPower;
-            }
+            granadeCharger = StartCoroutine(ChargeGrenade());
         }
         else if (Input.GetButtonUp("Fire1"))
         {
+            StopCoroutine(granadeCharger);
+            granadeCharger = null;
             Grenade grenade = grenadePool.GetPool(muzzlePoint.position, muzzlePoint.rotation);
             if (grenade == null) return;
             Rigidbody grenadeRb = grenade.GetComponent<Rigidbody>();
@@ -130,9 +135,19 @@ public class FPSController : MonoBehaviour
         }
     }
 
+    IEnumerator ChargeGrenade()
+    {
+        WaitForSeconds delay = new WaitForSeconds(0.1f);
+        while (true)
+        {
+            curThrowPower += chargeTime / 10;
+            yield return delay;
+        }
+    }
+
     void ChangeMode()
     {
-        if(Input.GetButtonDown("Fire Bullet"))
+        if (Input.GetButtonDown("Fire Bullet"))
         {
             curMode = Mode.Bullet;
             gun.SetActive(true);
@@ -142,7 +157,7 @@ public class FPSController : MonoBehaviour
         {
             curMode = Mode.Grenade;
             grenade.SetActive(true);
-            gun.SetActive(false);        
+            gun.SetActive(false);
         }
     }
 
