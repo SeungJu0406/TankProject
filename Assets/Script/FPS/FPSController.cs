@@ -25,6 +25,8 @@ public class FPSController : MonoBehaviour
 
     [SerializeField] int damage;
 
+    [SerializeField] float attackSpeed;
+
     [Header("Grenade Statue")]
     [SerializeField] float maxThrowPower;
 
@@ -41,6 +43,8 @@ public class FPSController : MonoBehaviour
     Vector3 moveDir;
 
     Vector3 rotateDir;
+
+    Coroutine gunShooter;
 
     Coroutine granadeCharger; 
 
@@ -109,14 +113,28 @@ public class FPSController : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
+            gunShooter = StartCoroutine(ShootBullet());
+        }
+        else if (Input.GetButtonUp("Fire1"))
+        {
+            StopCoroutine(gunShooter);
+            gunShooter = null;
+        }
+    }
+
+    IEnumerator ShootBullet()
+    {
+        WaitForSeconds delay = new WaitForSeconds(attackSpeed);
+        while (true)
+        {
             if (Physics.Raycast(muzzlePoint.position, muzzlePoint.forward, out RaycastHit hit, range, layerMask))
             {
                 IHit monster = hit.transform.GetComponent<IHit>();
                 monster.Hit(damage);
             }
+            yield return delay;
         }
     }
-
     void ThrowGrenade()
     {
         if (Input.GetButtonDown("Fire1"))
