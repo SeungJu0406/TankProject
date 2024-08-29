@@ -18,7 +18,7 @@ public class FPSController : MonoBehaviour
 
     [SerializeField] float rotateSpeed;
 
-    [SerializeField] Mode curMode;
+    [SerializeField] public Mode curMode;
 
     [Header("Gun Status")]
     [SerializeField] float range;
@@ -27,9 +27,9 @@ public class FPSController : MonoBehaviour
 
     [SerializeField] float attackSpeed;
 
-    [SerializeField] int maxBulletCount;
+    [SerializeField] public int maxBulletCount;
 
-    [SerializeField] int curBulletCount;
+    [SerializeField] public int curBulletCount;
 
     [SerializeField] float reloadTime;
 

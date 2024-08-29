@@ -1,18 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] Text bulletUI;
+
+    [SerializeField] FPSController player;
+
+    private void Start()
     {
-        
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        player = playerObj.GetComponent<FPSController>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        switch (player.curMode) 
+        {
+            case FPSController.Mode.Bullet:
+                PrintBulletMode();
+                break;
+            case FPSController.Mode.Grenade:
+                PrintGranadeMode();
+                break;
+        }
+
+    }
+
+    void PrintBulletMode()
+    {
+        if (player.curBulletCount == 0)
+        {
+            bulletUI.color = Color.red;
+        }
+        else
+        {
+            bulletUI.color = Color.black;
+        }
+        bulletUI.text = $"{player.curBulletCount}/{player.maxBulletCount}";
+    }
+
+    void PrintGranadeMode()
+    {
+        bulletUI.text = "";
     }
 }
