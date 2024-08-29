@@ -27,6 +27,12 @@ public class FPSController : MonoBehaviour
 
     [SerializeField] float attackSpeed;
 
+    [SerializeField] int maxBulletCount;
+
+    [SerializeField] int curBulletCount;
+
+    [SerializeField] float reloadTime;
+
     [Header("Grenade Statue")]
     [SerializeField] float maxThrowPower;
 
@@ -46,6 +52,8 @@ public class FPSController : MonoBehaviour
 
     Coroutine gunShooter;
 
+    Coroutine reloader;
+
     Coroutine granadeCharger; 
 
     private void Awake()
@@ -53,6 +61,8 @@ public class FPSController : MonoBehaviour
         layerMask = 1 << LayerMask.NameToLayer("Monster");
         rotateSpeed *= 10;
         transform.eulerAngles = Vector3.zero;
+
+        curBulletCount = maxBulletCount;
 
         chargeTime = (maxThrowPower - minThrowPower) / maxChargeTime;
         curThrowPower = minThrowPower;
@@ -111,15 +121,31 @@ public class FPSController : MonoBehaviour
 
     void FireBullet()
     {
-        if (Input.GetButtonDown("Fire1"))
+
+        if (curBulletCount <= 0)
         {
-            gunShooter = StartCoroutine(ShootBullet());
+            if (gunShooter != null)
+            {
+                StopCoroutine(gunShooter); 
+                gunShooter = null;
+                reloader = StartCoroutine(Reload());
+                curBulletCount = 0;
+            }
+            return;
+        }
+        if (Input.GetButton("Fire1"))
+        {          
+            if (gunShooter == null) 
+            {
+                gunShooter = StartCoroutine(ShootBullet());
+            }
         }
         else if (Input.GetButtonUp("Fire1"))
         {
             StopCoroutine(gunShooter);
             gunShooter = null;
         }
+ 
     }
 
     IEnumerator ShootBullet()
@@ -131,9 +157,19 @@ public class FPSController : MonoBehaviour
             {
                 IHit monster = hit.transform.GetComponent<IHit>();
                 monster.Hit(damage);
+                curBulletCount--;
             }
             yield return delay;
         }
+    }
+
+    IEnumerator Reload()
+    {
+        WaitForSeconds delay = new WaitForSeconds(reloadTime);
+        Debug.Log("장전중");
+        yield return delay;
+        Debug.Log("장전 완료");
+        curBulletCount = maxBulletCount;
     }
     void ThrowGrenade()
     {
@@ -144,7 +180,6 @@ public class FPSController : MonoBehaviour
         else if (Input.GetButtonUp("Fire1"))
         {
             StopCoroutine(granadeCharger);
-            granadeCharger = null;
             Grenade grenade = grenadePool.GetPool(muzzlePoint.position, muzzlePoint.rotation);
             if (grenade == null) return;
             Rigidbody grenadeRb = grenade.GetComponent<Rigidbody>();
